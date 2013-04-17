@@ -6,7 +6,7 @@ var classSources = {
 	"sun.reflect": "Java Reflection",
 	"java.util.concurrent": "Java Threads",
 	"java.lang": "Java",
-	"com.google": "Google",
+	"com.google": "Google (In Minecraft it's used by FML and Forge)",
 	"org.bukkit": "Bukkit [http://bukkit.org/]",
 	"forestry": "Forestry [http://forestry.sengir.net/wiki.new/doku.php]",
 	"thaumicbees": "ThaumicBees [http://www.minecraftforum.net/topic/1627856-thaumic-bees-magic-themed-bees-for-forestry-equivalent-exchange-3-thaumcraft-3-compatible/]",
