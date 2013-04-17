@@ -6,7 +6,7 @@ module.exports = function (fileData) {
 
 	if (lines[0] != "---- Minecraft Crash Report ----") { // check magic
 		console.log("[" + lines[0] + "]");
-		throw new Error("Not a Vannila Minecraft Crash Report")
+		throw new Error("Not a Vannila Minecraft Crash Report");
 	}
 
 	ret.time = lines[3].substr(lines[3].indexOf(": ") + 2); // get the log time
@@ -19,6 +19,20 @@ module.exports = function (fileData) {
 	}
 
 	ret.mainError = javaExceptionParser(exLog);
+
+	if (lines[exLogEnd + 1] != "A detailed walkthrough of the error, its code path and all known details is as follows:") { // second check
+		console.log("[" + lines[exLogEnd + 1] + "]");
+		throw new Error("Not a Vannila Minecraft Crash Report");
+	}
+
+	var currentPos = exLogEnd + 4;
+
+	while (currentPos < lines.length) {
+		console.log(lines[currentPos]);
+		if (lines[currentPos] == "-- System Details --") {
+			
+		}
+	}
 
 	return ret;
 }
