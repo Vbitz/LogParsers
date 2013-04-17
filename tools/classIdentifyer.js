@@ -7,13 +7,13 @@ var classSources = {
 	"java.util.concurrent": "Java Threads",
 	"java.lang": "Java",
 	"com.google": "Google (In Minecraft it's used by FML and Forge)",
-	"org.bukkit": "Bukkit [http://bukkit.org/]",
-	"forestry": "Forestry [http://forestry.sengir.net/wiki.new/doku.php]",
-	"thaumicbees": "ThaumicBees [http://www.minecraftforum.net/topic/1627856-thaumic-bees-magic-themed-bees-for-forestry-equivalent-exchange-3-thaumcraft-3-compatible/]",
-	"cpw.mods.fml": "Forge Mod Loader [https://github.com/MinecraftForge/FML]",
-	"FMLRenderAccessLibrary": "Forge Mod Loader [https://github.com/MinecraftForge/FML]",
-	"soaryn.xycraft": "Xycraft [http://xycraft.wikispaces.com/]",
-	"thaumcraft": "Thaumcraft 3 [http://www.minecraftforum.net/topic/1585216-thaumcraft-303-updated-122013/]"
+	"org.bukkit": "<a href=\"http://bukkit.org/\">Bukkit</a>]",
+	"forestry": "<a href=\"http://forestry.sengir.net/wiki.new/doku.php\">Forestry</a>",
+	"thaumicbees": "<a href=\"http://www.minecraftforum.net/topic/1627856-thaumic-bees-magic-themed-bees-for-forestry-equivalent-exchange-3-thaumcraft-3-compatible/\">ThaumicBees</a>",
+	"cpw.mods.fml": "<a href=\"https://github.com/MinecraftForge/FML\">Forge Mod Loader</a>",
+	"FMLRenderAccessLibrary": "<a href=\"https://github.com/MinecraftForge/FML\">Forge Mod Loader</a>",
+	"soaryn.xycraft": "<a href=\"http://xycraft.wikispaces.com/\">Xycraft</a>",
+	"thaumcraft": "<a href=\"http://www.minecraftforum.net/topic/1585216-thaumcraft-303-updated-122013/\">Thaumcraft 3</a>"
 };
 
 module.exports = function (classname) {

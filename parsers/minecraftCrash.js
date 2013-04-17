@@ -19,6 +19,19 @@ function parseBukkitPlugin(line) {
 	return ret;
 }
 
+function parseFMLMod(line) {
+	if (line.substr(0, 5) == "LWJGL") {
+		return {};
+	}
+	var ret = {};
+	ret.modId = line.substr(0, line.indexOf(" ["));
+	line = line.substr(line.indexOf(" [") + 2);
+	ret.modName = line.substr(0, line.indexOf("]"));
+	line = line.substr(line.indexOf("]") + 3);
+	ret.modZipName = line.substr(0, line.indexOf(")"));
+	return ret;
+}
+
 module.exports = function (fileData) {
 	var ret = {};
 	var lines = fileData.split('\r\n');
@@ -69,11 +82,62 @@ module.exports = function (fileData) {
 						ret[key] = map(data.split("), EntityPlayer"), function (i) {
 							return map(i.replace(/.*\[EntityPlayer/, '').substr(1).split('](')[0].split(','), function (i) {return i.trim()});
 						});
+					} else if (key == "FML") {
+						var fmlMods = [];
+						key = lines[currentPos].substr(0, lines[currentPos++].indexOf(":")).trim();
+						while (key != "LWJGL") {
+							fmlMods.push(lines[currentPos]);
+							key = lines[currentPos].substr(0, lines[currentPos++].indexOf(":")).trim();
+						}
+						ret["FML Mods"] = map(fmlMods, function (i) {
+							return parseFMLMod(i.trim());
+						});
+						currentPos--;
+						ret[key] = lines[currentPos].substr(lines[currentPos].indexOf(":") + 2);
 					} else if (key == "Threads") {
 					} else if (key == "Suspicious classes") {
 					} else {
 						ret[key] = line.substr(line.indexOf(":") + 2);
 					}
+				} else {
+
+				}
+				currentPos++;
+			}
+		} else if (lines[currentPos] == "-- Head --") {
+			while (lines[currentPos++].length > 0) {}
+		} else if (lines[currentPos] == "-- Affected level --") {
+			currentPos += 2;
+			while (lines[currentPos].trim() != "Stacktrace:") {
+				var line = lines[currentPos].trim();
+				if (line.indexOf(":") !== -1) {
+					var key = line.substr(0, line.indexOf(":"));
+					if (key.length > 34) {
+						currentPos++;
+						continue;
+					}
+					if (key == "All players") {
+
+					} else {
+						ret[key] = line.substr(line.indexOf(":") + 2);
+					}
+				} else {
+
+				}
+				currentPos++;
+			}
+			while (lines[currentPos++].length > 0) {}
+		} else if (lines[currentPos] == "-- Screen render details --") {
+			currentPos += 2;
+			while (lines[currentPos].length > 0) {
+				var line = lines[currentPos].trim();
+				if (line.indexOf(":") !== -1) {
+					var key = line.substr(0, line.indexOf(":"));
+					if (key.length > 34) {
+						currentPos++;
+						continue;
+					}
+					ret[key] = line.substr(line.indexOf(":") + 2);
 				} else {
 
 				}
