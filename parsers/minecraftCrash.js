@@ -117,7 +117,7 @@ module.exports = function (fileData) {
 						continue;
 					}
 					if (key == "All players") {
-
+					} else if (key == "Forced entities") {
 					} else {
 						ret[key] = line.substr(line.indexOf(":") + 2);
 					}

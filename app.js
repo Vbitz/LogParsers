@@ -3,7 +3,8 @@ if (process.argv.length != 4) {
 	process.exit(1);
 }
 
-var fs = require("fs");
+var fs = require("fs"),
+	jsonToHTML = require("./tools/jsonToHTML");
 
 function json(obj, tidy) {
 	if (typeof obj == "string") {
@@ -18,7 +19,7 @@ function json(obj, tidy) {
 }
 
 function parseItem(parserType, filename) {
-	if (filename.indexOf(".out.json") != -1) {
+	if (filename.indexOf(".out.json") != -1 || filename.indexOf(".out.html") != -1) {
 		return; // don't want to try and parse my own output
 	}
 
@@ -32,7 +33,7 @@ function parseItem(parserType, filename) {
 
 	var fileData = parser(fs.readFileSync(filename, "utf8"));
 
-	fs.writeFileSync(filename + ".out.json", json(fileData, true));
+	fs.writeFileSync(filename + ".out.html", jsonToHTML(fileData, true));
 }
 
 function parseAllItems(parserType, files) {
